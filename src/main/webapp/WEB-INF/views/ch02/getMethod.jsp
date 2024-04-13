@@ -38,7 +38,7 @@
 				   });
 			}
 			function handleBtn3() {
-				   console.log("handleBtn2() 실행"); // 1번
+				   console.log("handleBtn3() 실행"); // 1번
 				   
 				   $.get("getMethodAjax", {bkind:"notice", bno:300}, function(data) {  // 2번 or 4번
 				         $("#ajaxResponseInclude").html(data);
@@ -88,7 +88,7 @@
 							<button onclick="handleBtn1()" type="button" class="btn btn-success btn-sm">JavaScript로 요청</button>
 							<button onclick="handleBtn2()" type="button" class="btn btn-success btn-sm">AJAX로 요청</button>
 							<div id="ajaxResponseInclude" class="mt-2">
-								???
+								
 							</div>
 						</div>
 					</div>
