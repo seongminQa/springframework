@@ -33,24 +33,24 @@ import lombok.extern.slf4j.Slf4j;
 public class Ch02Controller {
 
 	@GetMapping("/getMethod")
-	public String getMethod(String chNum, String bkind, String bno, Model model) {
+	public String getMethod(String bkind, String bno, Model model) {
 		// 요청 처리 코드
 		log.info("getMethod() 실행 ");
-		log.info("chNum: " + chNum);
+		log.info("chNum: " + "ch02");
 
-		model.addAttribute("chNum", chNum);
+		model.addAttribute("chNum", "ch02");
 		return "ch02/getMethod";
 	}
 
 	@RequestMapping(value = "/getMethodAjax", method = RequestMethod.GET)
-	public String getMethodAjax(String chNum, String bkind, String bno, Model model) {
+	public String getMethodAjax(String bkind, String bno, Model model) {
 		// 요청 처리 코드
 		log.info("getMethodAjax() 실행 ");
-		log.info("chNum: " + chNum);
+		log.info("chNum: " + "ch02");
 		log.info("bkind: " + bkind);
 		log.info("bno: " + bno);
 
-		model.addAttribute("chNum", chNum);
+		model.addAttribute("chNum", "ch02");
 		return "ch02/getMethodAjax";
 	}
 
@@ -142,10 +142,10 @@ public class Ch02Controller {
 	
 	// 4월 12일 학습
 	@GetMapping("/modelAndViewReturn")
-	public ModelAndView modelAndViewReturn(String chNum) {
+	public ModelAndView modelAndViewReturn() {
 		log.info("modelAndViewReturn() 실행");
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("chNum", chNum);
+		modelAndView.addObject("chNum", "ch02");
 		modelAndView.addObject("login", true);
 		modelAndView.addObject("userName", "감자바");
 		modelAndView.setViewName("ch02/modelAndViewReturn");
@@ -202,9 +202,9 @@ public class Ch02Controller {
 	}
 	
 	@GetMapping("/objectReturn")
-	public String objectReturn(String chNum, Model model) {
+	public String objectReturn(Model model) {
 		
-		model.addAttribute("chNum", chNum);  // 아코디언이 펼쳐진 상태로 유지하게 해준다.
+		model.addAttribute("chNum", "ch02");  // 아코디언이 펼쳐진 상태로 유지하게 해준다.
 		
 		return "ch02/objectReturn";
 	}
@@ -230,17 +230,17 @@ public class Ch02Controller {
 	}
 	
 	@GetMapping("/testAuthInterceptor1")
-	public String testAuthInterceptor1(String chNum, Model model) {
+	public String testAuthInterceptor1(Model model) {
 		log.info("testAuthInterceptor1() 실행");
-		model.addAttribute("chNum", chNum);
+		model.addAttribute("chNum", "ch02");
 		return "ch02/testAuthInterceptor1";
 	}
 	
 	@GetMapping("/testAuthInterceptor2")
 	@Auth
-	public String testAuthInterceptor2(String chNum, Model model) {
+	public String testAuthInterceptor2(Model model) {
 		log.info("testAuthInterceptor2() 실행");
-		model.addAttribute("chNum", chNum);
+		model.addAttribute("chNum", "ch02");
 		return "ch02/testAuthInterceptor2";
 	}
 	

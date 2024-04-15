@@ -13,10 +13,17 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class Ch01Controller {
 	
-	@RequestMapping("/content")
+/*	@RequestMapping("/content")
 	public String content(String chNum, Model model) {
-//		log.info("content() 실행");
+		log.info("content() 실행");
 		model.addAttribute("chNum", chNum);
+		return "/ch01/content";
+	}*/
+	
+	@RequestMapping("/content")
+	public String content(Model model) {
+		log.info("content() 실행");
+		model.addAttribute("chNum", "ch01");
 		return "/ch01/content";
 	}
 }
