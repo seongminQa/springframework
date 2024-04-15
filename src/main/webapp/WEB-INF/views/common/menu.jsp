@@ -73,6 +73,7 @@
       <div class="accordion-body">
         <ul>
       		<li><a href="${pageContext.request.contextPath}/ch04/loginForm">로그인 폼</a></li>
+      		<li><a href="${pageContext.request.contextPath}/ch04/signupForm">회원가입 폼</a></li>
       		
       	</ul> 
       </div>

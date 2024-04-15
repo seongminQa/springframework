@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mycompany.springframework.dto.Ch04LoginForm;
 import com.mycompany.springframework.dto.Ch04LoginFormValidator;
+import com.mycompany.springframework.dto.Ch04SignUpForm;
+import com.mycompany.springframework.dto.Ch04SignUpFormValidator;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,25 +45,25 @@ public class Ch04Controller {
 		// 로그인 처리
 		return "redirect:/"; // (:/) --> 이 부분 주소가 어떻게 입력해야하는지는 사용해보아야 한다. 
 	}
-	
-	@GetMapping("/signUpForm")
+	// -----------------------------------------------------
+	@GetMapping("/signupForm")
 	public String signUpForm(Model model) {
 		model.addAttribute("chNum", "ch04");
-		return "ch04/signUpForm";
+		return "ch04/signupForm";
 	}
 	
-	@InitBinder("ch04LoginForm")
-	public void ch04loginFormValidator(WebDataBinder binder) {
-		binder.setValidator(new Ch04LoginFormValidator());
+	@InitBinder("ch04SignUpForm")
+	public void ch04signUpFormValidator(WebDataBinder binder) {
+		binder.setValidator(new Ch04SignUpFormValidator());
 	}
 	
 	// 중요!
-	@RequestMapping("/login")
-	public String login(@Valid Ch04LoginForm loginForm, Errors errors, Model model) {
+	@RequestMapping("/signup")
+	public String signup(@Valid Ch04SignUpForm signupForm, Errors errors, Model model) {
 		// 유효성 검사 실패 시 다시 로그인 폼 보여주기
 		if(errors.hasErrors()) {
 			model.addAttribute("chNum", "ch04");
-			return "ch04/loginForm"; // 왜 loginForm메소드로 넘겨주지 않는가?
+			return "ch04/signupForm"; // 왜 loginForm메소드로 넘겨주지 않는가?
 		}
 		
 		// 로그인 처리
