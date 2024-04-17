@@ -19,7 +19,12 @@
 		
 		<!-- 사용자 정의 자바스크립트 -->
 		<script>
-
+			function addCartItem() {
+				var pno = ${product.pno};  // ??? 서버에 값을 넣어주는 것. // 이해하기 // 서버에서 값을 집어넣어주는 코드
+				var amount = $("#amount").val();  // 클라이언트에서 실행하는 것. // 위의 코드와 실행위치가 다르다. // 공부
+				document.location.href = "addCartItem?pno=" + pno + "&amount=" + amount; // 값이 2개 넘어감. // 폼 태그 사용하지 않고 넘기는 방식
+				
+			}
 		</script>
 </head>
 <body>
@@ -35,9 +40,16 @@
 				<div class="col-md-8">
 					<!-- #################################### -->
 					<div class="card">
-						<div class="card-header">applicationData</div>
+						<div class="card-header">상품 상세 정보</div>
 						<div class="card-body">
-							<p>방문자 수: ${counter}</p>
+							<p>상품 번호: ${product.pno}</p>
+							<p>상품 이름: ${product.pname}</p>
+							<p>상품 가격: ${product.pprice}</p>
+							<hr/>
+							<div>
+								수량: <input type="number" id="amount" value="1"/>
+							</div>
+							<button onclick="addCartItem()" class="mt-3 btn btn-info btn-sm">장바구니 넣기</button>
 						</div>
 					</div>
 					<!-- #################################### -->
