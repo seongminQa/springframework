@@ -143,7 +143,22 @@
       		<li><a href="${pageContext.request.contextPath}/ch08/productList">상품 목록</a></li>
       		<li><a href="${pageContext.request.contextPath}/ch08/cartView">장바구니 보기</a></li>
       		<%-- <li><a href="${pageContext.request.contextPath}/ch08/detailView">상품 </a></li> --%>
-      		
+      	</ul> 
+      </div>
+    </div>
+  </div>
+  
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button ${chNum=='ch09'?'':'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapse#collapseNine">
+        Ch - 09. 파일 업로드와 다운로드
+      </button>
+    </h2>
+    <div id="collapseNine" class="accordion-collapse collapse ${chNum=='ch09'?'show':''}" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+      		<li><a href="${pageContext.request.contextPath}/ch09/fileUploadForm">파일 업로드</a></li>
+      		<li><a href="${pageContext.request.contextPath}/ch09/downloadFileList">파일 다운로드</a></li>
       	</ul> 
       </div>
     </div>
