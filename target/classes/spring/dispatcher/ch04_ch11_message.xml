@@ -3,9 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+
+<!-- ch11과 겹치면서 수정함 -->
 	<bean id="messageSource"
 			class="org.springframework.context.support.ResourceBundleMessageSource">
-		<property name="basename" value="message/ch04_error"></property>
+		<property name="basenames">
+		<list>
+			<value>message/ch04_error</value>
+			<value>message/ch11_internationalization</value>
+		</list>
+		</property>
 	</bean>
 
 </beans>
