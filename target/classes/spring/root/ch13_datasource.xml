@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- DataSource(Connection Pool) 설정 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+			destroy-method="close">
+		<!-- Setter 주입 (데이터베이스 최소 연결 목록..?)-->
+		<!-- 연결을 위한 설정 -->
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver"/> <!-- 어떤 데이터베이스를 쓰는지 -->
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl"/> <!-- localhost는 IP주소로도 가능하다. -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@192.168.3.82:1521:orcl"/> --> <!-- localhost는 IP주소로도 가능하다. -->
+		<property name="username" value="spring"/> <!-- 사용자 이름 설정 -->
+		<property name="password" value="oracle"/> <!-- 사용자 패스워드 설정 -->
+		
+		<!-- 커넥션 유지 관리 설정 -->
+		<property name="initialSize" value="2"/> <!-- 많이 사용할수록 메모리를 많이 잡아먹음.. // 프로젝트시 프로젝트 인원의 두배로 주자-->
+		<property name="maxTotal" value="4"/> <!-- 초기 사이즈보다는 커야한다. 두배정도로 주자. -->
+		<property name="maxIdle" value="2"/> <!-- 최대로 휴식하고 있는 커넥션의 수 -->
+	</bean>
+	
+</beans>

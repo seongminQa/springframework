@@ -27,4 +27,42 @@
 		<constructor-arg ref="ch12Dao2"></constructor-arg>	
 	</bean>
 	
+	<!-- Ch12Service7 부분 빈 선언 -->
+	<bean id="ch12Service7"
+		class="com.mycompany.springframework.service.Ch12Service7">
+		<property name="list">
+			<list>
+				<value>아이템1</value>
+				<value>아이템2</value>
+				<value>아이템3</value>
+			</list>
+		</property>
+		
+		<property name="set">
+			<set>
+				<value>아이템1</value>
+				<value>아이템2</value>
+				<!-- ref를 사용했을 때.. 위 bean의 아이디를 가져와 사용.. -->
+				<ref bean="ch12Dao1"/>
+				<ref bean="ch12Dao2"/>
+			</set>
+		</property>
+		
+		<property name="map">
+			<map>
+				<entry key="key1" value="value1"/>
+				<entry key="key2" value="value2"/>
+			</map>
+		</property>
+		
+		<property name="prop">
+			<props>
+				<prop key="key1">value1</prop>
+				<prop key="key2">value2</prop>
+				<prop key="key3">value3</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
 </beans>

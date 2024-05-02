@@ -11,8 +11,8 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+//@ControllerAdvice  // @Service나 @Repository가 붙어있는 것이 아니기 때문에 디스패처 쪽에서 검색됨.
 @Component
-@ControllerAdvice  // @Service나 @Repository가 붙어있는 것이 아니기 때문에 디스패처 쪽에서 검색됨.
 public class Ch10ExceptionHandler {  // 디스패처 안에서 컨테이너로 객체가 저장..?
 	
 	// 자바에서 정해져 있는 예외로 처리

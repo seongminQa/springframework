@@ -216,4 +216,50 @@
     </div>
   </div>
   
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button ${chNum=='ch13'?'':'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse13" aria-expanded="false" aria-controls="collapse#collapse13">
+        Ch - 13. Data Access
+      </button>
+    </h2>
+    <div id="collapse13" class="accordion-collapse collapse ${chNum=='ch13'?'show':''}" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+      		<li><a href="${pageContext.request.contextPath}/ch13/writeBoardForm">게시물 쓰기</a></li>
+      		<li><a href="${pageContext.request.contextPath}/ch13/boardList">게시물 목록</a></li>
+      	</ul> 
+      </div>
+    </div>
+  </div>
+  
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button ${chNum=='ch15'?'':'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse15" aria-expanded="false" aria-controls="collapse#collapse15">
+        Ch - 15. 트랜잭션 (Transaction) 처리
+      </button>
+    </h2>
+    <div id="collapse15" class="accordion-collapse collapse ${chNum=='ch15'?'show':''}" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+      		<li><a href="${pageContext.request.contextPath}/ch15/accountList">계좌이체하기</a></li>
+      	</ul> 
+      </div>
+    </div>
+  </div>
+  
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button ${chNum=='ch17'?'':'collapsed'}" type="button" data-bs-toggle="collapse" data-bs-target="#collapse17" aria-expanded="false" aria-controls="collapse#collapse17">
+        Ch - 17. Spring Security
+      </button>
+    </h2>
+    <div id="collapse17" class="accordion-collapse collapse ${chNum=='ch17'?'show':''}" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <ul>
+      		<li><a href="${pageContext.request.contextPath}/ch17/loginForm">로그인</a></li>
+      	</ul> 
+      </div>
+    </div>
+  </div>
+  
 </div>

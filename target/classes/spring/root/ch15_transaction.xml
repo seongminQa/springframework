@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<bean id="transactionManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 데이터베이스에 커밋 또는 롤백 등 알리기 위해 커넥션 풀 연결 / 세터주입 -->
+		<!-- ch13_datasource.xml에 id로 등록되어있는 것 -->
+		<property name="dataSource" ref="dataSource"></property>
+	
+	</bean>
+	
+	<!-- Service에서 @Transactional 어노테이션을 사용하기 위한 설정 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+
+</beans>

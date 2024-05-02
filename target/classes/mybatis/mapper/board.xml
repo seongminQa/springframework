@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.mycompany.springframework.dao.mybatis.Ch13BoardDao">
+	
+	<!-- mapper-config.xml파일에서 타입 엘리아스 수정 후 파라미터 타입의 글자를 줄일 수 있다 -->
+	<!-- <insert id="insert" parameterType="com.mycompany.springframework.dto.Ch13Board"> -->
+	<insert id="insert" parameterType="Ch13Board">
+		<!-- keyProperty는 parameterType에서 가져온 값을 어떻게 넘겨줄 것인지 기술 -->
+		<!-- order를 이용하여 코드의 실행 순서를 정한다 -->
+		<!-- result타입을 알려줘야 에러가 나지 않는다. bno는 숫자. -->
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+			select seq_bno.nextval from dual
+		</selectKey>
+	
+		insert into board(
+			bno, btitle, bcontent, bdate, mid, bhitcount,
+			battachoname, battachtype, battachdata)
+		<!-- DTO에서 값을 얻어서 값을 넣어주어야 한다. -->
+		values(<!-- seq_bno.nextval --> 
+			#{bno}, #{btitle}, #{bcontent}, sysdate, #{mid}, 0,
+			#{battachoname}, #{battachtype}, #{battachdata})
+	</insert>
+	
+	<select id="count" resultType="int">
+		select count(*) from board
+	</select>
+	
+	<select id="selectByPage" parameterType="Ch13Pager" resultType="Ch13Board"> <!-- Ch13Board은 한 행에 대한 객체 타입을 명시해준 것이다. -->
+		<!-- C는 캐릭터를 의미. 문자 그대로의 데이터를 받아들이는 구문 -->
+		<![CDATA[
+		select rnum, bno, btitle, bcontent, mid, bdate, bhitcount
+		from (
+		    select rownum as rnum, bno, btitle, bcontent, mid, bdate, bhitcount
+		    from (
+		        select bno, btitle, bcontent, mid, bdate, bhitcount
+		        from board
+		        order by bno desc
+		    )
+		    where rownum <= #{endRowNo}
+		)
+		where rnum >= #{startRowNo}
+		]]>
+	</select>
+	
+	<select id="selectByBno" parameterType="int" resultType="Ch13Board">
+		<!-- 게시글에서 가장 큰 용량을 차지하는 battachdata를 어떻게 처리할 것인가?
+			우선 작은 사이즈의 인스턴스들을 먼저 받는다.
+		 -->
+		 <!-- where bno = #{변수이름} 여기서 어차피 하나의 값만 받아오기 때문에 변수이름은 중요하지 않다. -->
+		 select bno, btitle, bcontent, mid, bdate, bhitcount, battachoname, battachtype
+		 from board
+		 where bno = #{bno}
+	</select>
+	
+	
+	
+	<!-- 게시글 이미지 보기.. -->
+	<select id="selectAttachData" parameterType="int" resultType="Ch13Board">
+		select battachdata from board where bno=#{bno}
+	</select>
+	
+	<!-- 게시물 수정하기 -->
+	<update id="update" parameterType="Ch13Board">
+		<!-- 공통적인 부분은 if문 밖으로 빼주기. -->
+		update board set 
+			btitle=#{btitle}, 
+			bcontent=#{bcontent}
+		<if test="battachoname != null">
+			,
+			battachoname=#{battachoname},
+			battachtype=#{battachtype}, 
+			battachdata=#{battachdata}
+		</if>
+		where bno=#{bno}
+	</update>
+	
+	<delete id="deleteByBno" parameterType="int">
+		delete from board where bno=#{bno}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+	
+   <!-- 보안 필터 체인을 적용하지 않는 요청 경로 : 보안 필터 체인 설정보다 먼저 설정해야함 -->
+   <security:http pattern="/resources/**" security="none"/> <!-- resources는 정적파일들을 모아놓은 폴더, **는 아래의 모든 것을 의미 -->
+
+   <!-- 보안 필터 체인 설정 -->
+   <security:http >
+      <!-- 인증 방식 설정: Form 인증 방식 -->         
+      <security:form-login
+         login-page="/ch17/loginForm"
+         username-parameter="mid"
+         password-parameter="mpassword"
+         login-processing-url="/login" 
+         authentication-success-handler-ref="ch17AuthenticationSuccessHandler"
+         authentication-failure-handler-ref="ch17AuthenticationFailureHandler"/>
+         <!-- login-processing-url="/login" 이부분은 jsp의 form action과 관련있다. (컨트롤러의 요청경로가 아니다) -->
+         <!-- authentication-success-handler-ref : 인증이 성공했을 때 실행되는 객체라는 뜻 -->
+         
+      <!-- POST 방식으로 요청하는 로그아웃 -->
+      <security:logout 
+         logout-url="/logout"
+         success-handler-ref="ch17LogoutSurccessHandler"/>
+         
+      <!-- 사이트간 요청 위조(내가 준 form만을 통하여 요청을 받음) 방지 비활성화 -->
+      <!-- logout도 post 방식으로 요청(_csrf의 토큰을 전달해야함) -->
+      <security:csrf disabled="true"/>
+      
+      <!-- 요청 URL 권한 설정 방법1 식별-->
+      <!-- <security:intercept-url pattern="/ch17/admin*" access="hasRole('ROLE_ADMIN')"/>
+      <security:intercept-url pattern="/ch17/manager*" access="hasRole('ROLE_MANAGER')"/> 
+      <security:intercept-url pattern="/ch17/user/**" access="isAuthenticated()"/> -->
+      
+      <!-- 로그인을 하지 안항도 처리해준다. -->
+      <security:intercept-url pattern="/**" access="permitAll"/>
+      
+      <!-- 권한 없음일 경우 보여줄 페이지 설정  // 403 권한이 없을 때 나오는 에러-->
+      <security:access-denied-handler error-page="/ch17/error403"/>
+
+      <!-- 위의 방식으로 한다면 요청 매핑이 들어갈 때 마다 인증 또는 권한을 받아야 한다. 그렇게 되면 위의 코드를 항상 새로 붙여주어야 한다는 것
+       그것을 방지하려면 어노테이션을 사용할 수 있다. 컨트롤러 위에 @Secured("ROLE_ADMIN") 이런식으로 붙여주면 된다는 것-->
+   </security:http>
+   
+   <!-- 로그인 성공했을 때 실행하는 핸들러 -->
+  <bean id="ch17AuthenticationSuccessHandler"
+  		class="com.mycompany.springframework.security.Ch17AuthenticationSuccessHandler">
+  </bean>      
+     
+     <!-- 로그인 실패했을 때 실행하는 핸들러 -->
+  <bean id="ch17AuthenticationFailureHandler"
+  		class="com.mycompany.springframework.security.Ch17AuthenticationFailureHandler">
+  </bean>   
+  
+  <!-- 로그아웃 성공했을 때 실행하는 핸들러 -->
+  <bean id="ch17LogoutSurccessHandler"
+  		class="com.mycompany.springframework.security.Ch17LogoutSurccessHandler">
+  
+  </bean>  
+   
+   <!-- 
+	   요청 URL 권한 설정 방법2
+	   클래스 또는 메소드에 @Secured("ROLE_ADMIN")을 붙일 수 있도록 설정 
+	   controller에서 확인
+    -->
+   <security:global-method-security secured-annotations="enabled"/>
+
+   
+   <!-- 인증 관리자 설정(아이디와 패스워드를 DB와 비교해서 로그인 처리 관리) -->
+   <security:authentication-manager>
+      <security:authentication-provider ref="daoAuthenticationProvider"/> <!-- ref로 사용했기 때문에 스프링 관리객체를 써야한다? -->
+   </security:authentication-manager>
+
+   <!-- 인증 제공자 설정 -->
+   <bean id="daoAuthenticationProvider"
+        class="org.springframework.security.authentication.dao.DaoAuthenticationProvider">
+      <property name="userDetailsService" ref="ch17UserDetailsService"/> <!-- 모르겠다. -->
+      <property name="authoritiesMapper" ref="roleHierarchyAuthoritiesMapper"/>
+   </bean> 
+   
+   
+   <!-- 권한 계층 설정 -->
+   <bean id="roleHierarchyAuthoritiesMapper"
+        class="org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper">
+      <constructor-arg ref="roleHierarchyImpl"/>
+   </bean>   
+   <bean id="roleHierarchyImpl" 
+        class="org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl">
+      <property name="hierarchy">
+         <value> <!-- 권한의 정도 // hierarchy : 포함의 관계라고 이해  -->
+            ROLE_ADMIN > ROLE_MANAGER
+            ROLE_MANAGER > ROLE_USER
+         </value>
+      </property>
+   </bean>   
+
+
+</beans>
