@@ -9,12 +9,13 @@
 <title>Insert title here</title>
 		<!-- Bootstrap 5를 위한 외부 라이브러리 설정 -->
 		<!-- Latest compiled and minified CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="${pageContext.request.contextPath}/resources/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
 		<!-- Latest compiled JavaScript -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
 		
 		<!-- jQuery -->
-		<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+		<script src="${pageContext.request.contextPath}/resources/jquery/jquery-3.7.1.min.js"></script>
+
 </head>
 <body>
 

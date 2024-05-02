@@ -41,30 +41,10 @@
 				<div class="col-md-8">
 					<!-- #################################### -->
 					<div class="card">
-						<div class="card-header">로그인</div>
+						<div class="card-header">MANAGER만 볼 수 있는 내용</div>
 						<div class="card-body">
 						
-					      <c:if test="${SPRING_SECURITY_LAST_EXCEPTION != null}">
-					         <div class="alert alert-danger mb-2" role="alert">
-					            <c:if test="${SPRING_SECURITY_LAST_EXCEPTION.message == 'Bad credentials'}">
-					               	아이디 또는 비밀번호가 틀립니다.
-					            </c:if>
-					         </div>
-					      </c:if>
-						
-							<form method="post" action="${pageContext.request.contextPath}/login">
-								<!-- 시큐리티의 위조 방지를 위한 토큰번호. -->
-							   <%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
-							   <div class="form-group mb-2">
-							       <label for="mid">Member ID</label>
-							       <input type="text" class="form-control" id="mid" name="mid">
-							   </div>
-							   <div class="form-group mb-2">
-							      <label for="mpassword">Member Password</label>
-							      <input type="password" class="form-control" id="mpassword" name="mpassword">
-							   </div>
-							   <button type="submit" class="btn btn-info btn-sm mt-2">로그인</button>
-							</form>   
+					      ROLE_MANAGER 권한을 가진 사용자만 볼 수 있는 내용입니다.
 				            
 						</div>
 					</div>

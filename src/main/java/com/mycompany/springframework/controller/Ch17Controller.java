@@ -24,15 +24,20 @@ public class Ch17Controller {
 		return "ch17/admin/page";
 	}
 	
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_MANAGER")
 	@GetMapping("/manager/page")
 	public String managerpage() {
-		return "ch17/admin/registerProduct";
+		return "ch17/manager/page";
 	}
 	
-	@Secured("ROLE_ADMIN")
+	@Secured("ROLE_USER")
 	@GetMapping("/user/page")
 	public String userpage() {
-		return "ch17/admin/registerProduct";
+		return "ch17/user/page";
+	}
+	
+	@RequestMapping("/error403")
+	public String error403() {
+		return "ch17/error403";
 	}
 }

@@ -32,9 +32,9 @@
       <security:csrf disabled="true"/>
       
       <!-- 요청 URL 권한 설정 방법1 식별-->
-      <!-- <security:intercept-url pattern="/ch17/admin*" access="hasRole('ROLE_ADMIN')"/>
-      <security:intercept-url pattern="/ch17/manager*" access="hasRole('ROLE_MANAGER')"/> 
-      <security:intercept-url pattern="/ch17/user/**" access="isAuthenticated()"/> -->
+      <security:intercept-url pattern="/ch17/admin/**" access="hasRole('ROLE_ADMIN')"/>
+      <security:intercept-url pattern="/ch17/manager/**" access="hasRole('ROLE_MANAGER')"/> 
+      <security:intercept-url pattern="/ch17/user/**" access="isAuthenticated()"/>
       
       <!-- 로그인을 하지 안항도 처리해준다. -->
       <security:intercept-url pattern="/**" access="permitAll"/>
@@ -54,7 +54,7 @@
      <!-- 로그인 실패했을 때 실행하는 핸들러 -->
   <bean id="ch17AuthenticationFailureHandler"
   		class="com.mycompany.springframework.security.Ch17AuthenticationFailureHandler">
-  </bean>   
+  </bean>
   
   <!-- 로그아웃 성공했을 때 실행하는 핸들러 -->
   <bean id="ch17LogoutSurccessHandler"
