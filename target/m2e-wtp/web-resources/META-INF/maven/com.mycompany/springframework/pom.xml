@@ -5,6 +5,13 @@
   <version>1.0.0</version>
   <packaging>war</packaging>
   
+  
+  <properties>
+  	<springframework-version>5.3.33</springframework-version>
+  	<springframework-security>5.8.12</springframework-security>
+  </properties>
+  
+  
     <!-- 프로젝트가 사용하는 외부 의존 라이브러리 -->
   <dependencies>
      <!-- 서블릿 4.0 라이브러리를 사용 -->
@@ -48,13 +55,13 @@
    <dependency>
        <groupId>org.springframework</groupId>
        <artifactId>spring-context</artifactId>
-       <version>5.3.33</version>
+       <version>${springframework-version}</version>
    </dependency>
    
    <dependency>
        <groupId>org.springframework</groupId>
        <artifactId>spring-webmvc</artifactId>
-       <version>5.3.33</version>
+       <version>${springframework-version}</version>
    </dependency>
    <!-- JSON 라이브러리 사용 -->
    <dependency>
@@ -99,7 +106,7 @@
    <dependency>
           <groupId>org.springframework</groupId>
           <artifactId>spring-jdbc</artifactId>
-          <version>5.3.33</version>
+          <version>${springframework-version}</version>
    </dependency>
    
    <!-- JDBC Driver -->
@@ -137,20 +144,20 @@
    <dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-web</artifactId>
-	    <version>5.8.12</version>
+	    <version>${springframework-security}</version>
 	</dependency>
 	
 	<dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-config</artifactId>
-	    <version>5.8.12</version>
+	    <version>${springframework-security}</version>
 	</dependency>
 	
 	<!-- jsp에서 태그 사용할 때 씀 -->
 	<dependency>
 	    <groupId>org.springframework.security</groupId>
 	    <artifactId>spring-security-taglibs</artifactId>
-	    <version>5.8.12</version>
+	    <version>${springframework-security}</version>
 	</dependency>
       
   </dependencies>

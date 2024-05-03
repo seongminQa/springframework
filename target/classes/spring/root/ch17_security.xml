@@ -36,7 +36,7 @@
       <security:intercept-url pattern="/ch17/manager/**" access="hasRole('ROLE_MANAGER')"/> 
       <security:intercept-url pattern="/ch17/user/**" access="isAuthenticated()"/>
       
-      <!-- 로그인을 하지 안항도 처리해준다. -->
+      <!-- 로그인을 하지 안해도 처리해준다. 모든 요청에 대한 허가 -->
       <security:intercept-url pattern="/**" access="permitAll"/>
       
       <!-- 권한 없음일 경우 보여줄 페이지 설정  // 403 권한이 없을 때 나오는 에러-->
@@ -49,17 +49,20 @@
    <!-- 로그인 성공했을 때 실행하는 핸들러 -->
   <bean id="ch17AuthenticationSuccessHandler"
   		class="com.mycompany.springframework.security.Ch17AuthenticationSuccessHandler">
+  		<!-- 핸들러에서 setDefault를 하지 않고 이곳에 세터주입을 시켜주어도 된다. -->
+  		<property name="defaultTargetUrl" value="/"/>
   </bean>      
      
      <!-- 로그인 실패했을 때 실행하는 핸들러 -->
   <bean id="ch17AuthenticationFailureHandler"
   		class="com.mycompany.springframework.security.Ch17AuthenticationFailureHandler">
+  		<property name="defaultFailureUrl" value="/ch17/loginForm"></property>
   </bean>
   
   <!-- 로그아웃 성공했을 때 실행하는 핸들러 -->
   <bean id="ch17LogoutSurccessHandler"
   		class="com.mycompany.springframework.security.Ch17LogoutSurccessHandler">
-  
+  		<property name="defaultTargetUrl" value="/ch17/loginForm"></property>
   </bean>  
    
    <!-- 
@@ -82,7 +85,6 @@
       <property name="authoritiesMapper" ref="roleHierarchyAuthoritiesMapper"/>
    </bean> 
    
-   
    <!-- 권한 계층 설정 -->
    <bean id="roleHierarchyAuthoritiesMapper"
         class="org.springframework.security.access.hierarchicalroles.RoleHierarchyAuthoritiesMapper">
@@ -97,6 +99,5 @@
          </value>
       </property>
    </bean>   
-
 
 </beans>

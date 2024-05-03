@@ -23,7 +23,7 @@ public class Ch17LogoutSurccessHandler
 		log.info("실행");
 		
 		// 로그 아웃 성공시 리다이렉트로 이동할 경로 설정
-		setDefaultTargetUrl("/ch17/loginForm");
+//		setDefaultTargetUrl("/ch17/loginForm"); // 프로퍼티 세터 주입 해보자.
 		
 		// 기타 기본 설정을 적용하기 위해 부모 메소드 호출
 		super.onLogoutSuccess(request, response, authentication);

@@ -257,9 +257,9 @@
       <div class="accordion-body">
         <ul>
       		<li><a href="${pageContext.request.contextPath}/ch17/loginForm">로그인</a></li>
-      		<li><a href="${pageContext.request.contextPath}/ch17/admin/page">ADMIN 페이지</a></li>
-      		<li><a href="${pageContext.request.contextPath}/ch17/manager/page">MANAGER 페이지</a></li>
-      		<li><a href="${pageContext.request.contextPath}/ch17/user/page">USER 페이지(로그인 했을 경우)</a></li>
+      		<li><a href="${pageContext.request.contextPath}/ch17/authorityCheck">권한별 메뉴 보기</a></li>
+      		<li><a href="${pageContext.request.contextPath}/ch17/userInfo">사용자 정보</a></li>
+      		<li><a href="${pageContext.request.contextPath}/ch17/joinForm">회원 가입</a></li>
       	</ul> 
       </div>
     </div>
