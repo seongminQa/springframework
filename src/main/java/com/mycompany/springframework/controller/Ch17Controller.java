@@ -35,7 +35,7 @@ public class Ch17Controller {
 		return "ch17/admin/page";
 	}
 	
-	@Secured("ROLE_MANAGER")
+	@Secured({"ROLE_MANAGER", "ROLE_USER"})  // 권한 설정을 여러개 지정하고 싶을 때 '{}' 중괄호를 사용해준다.
 	@GetMapping("/manager/page")
 	public String managerpage() {
 		return "ch17/manager/page";

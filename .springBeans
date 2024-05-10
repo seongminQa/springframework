@@ -20,6 +20,7 @@
 		<config>src/main/resources/spring/root/ch13_mybatis.xml</config>
 		<config>src/main/resources/spring/root/ch15_transaction.xml</config>
 		<config>src/main/resources/spring/root/ch17_security.xml</config>
+		<config>src/main/resources/spring/dispatcher/ch14_aop.xml</config>
 	</configs>
 	<autoconfigs>
 		<config>src/main/resources/spring/root/ch12_di_by_xml.xml</config>

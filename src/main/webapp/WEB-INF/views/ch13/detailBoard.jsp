@@ -43,8 +43,8 @@
 					<!-- #################################### -->
 					<div class="card">
 						<div class="card-header">게시물 보기</div>
+						
 						<div class="card-body">
-					      
 					      <p>번호: ${ board.bno }</p>
 					      <p>제목: ${ board.btitle }</p>
 					      <p>글쓴이: ${ board.mid }</p>
@@ -57,7 +57,7 @@
 							      <img src="attachDownload?bno=${board.bno}" width="150">					      
 						      </div>
 					      </c:if>
-					      <p>내용: ${ board.bcontent }</p>
+					      <p>내용: ${board.bcontent}</p>
 					      
 					      <hr/>
 					      

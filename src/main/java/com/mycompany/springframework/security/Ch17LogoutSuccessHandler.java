@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-public class Ch17LogoutSurccessHandler 
+public class Ch17LogoutSuccessHandler 
 	extends SimpleUrlLogoutSuccessHandler{
 	
 	@Override
